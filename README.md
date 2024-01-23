@@ -11,7 +11,7 @@ sudo vim /etc/rc.local
 
 Add the following line
 
-sudo bash RPi-Benchmarks/boot_benchmark.sh
+sudo bash /RPi-Benchmarks/boot_benchmark.sh
 
 
 

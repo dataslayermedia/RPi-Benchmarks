@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Define the output file
+output_file="shutdown_difference.txt"
+
 # Get the last shutdown time
 last_shutdown=$(last -x | grep shutdown | head -1 | awk '{print $5 " " $6 " " $7 " " $8 " " $9}')
 
@@ -12,5 +15,7 @@ current_time_sec=$(date +%s)
 # Calculate the difference in seconds
 difference_sec=$((current_time_sec - last_shutdown_sec))
 
-echo "Time since last shutdown: $difference_sec seconds"
+# Write the result to the file
+echo "Time since last shutdown: $difference_sec seconds" > "$output_file"
 
+echo "Output written to $output_file"
