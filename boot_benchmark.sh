@@ -1,21 +1,21 @@
 #!/bin/bash
 
 # Define the output file
-output_file="shutdown_difference.txt"
+output_file="uptime_result.txt"
 
-# Get the last shutdown time
-last_shutdown=$(last -x | grep shutdown | head -1 | awk '{print $5 " " $6 " " $7 " " $8 " " $9}')
+# Get the system boot time
+boot_time=$(uptime -s)
 
-# Convert last shutdown time to seconds since epoch
-last_shutdown_sec=$(date -d "$last_shutdown" +%s)
-
-# Get current time in seconds since epoch
+# Convert boot time and current time to seconds since epoch
+boot_time_sec=$(date -d "$boot_time" +%s)
 current_time_sec=$(date +%s)
 
-# Calculate the difference in seconds
-difference_sec=$((current_time_sec - last_shutdown_sec))
+# Calculate uptime in seconds
+uptime_sec=$((current_time_sec - boot_time_sec))
 
-# Write the result to the file
-echo "Time since last shutdown: $difference_sec seconds" > "$output_file"
+# Convert seconds to human-readable format
+uptime=$(date -u -d @$uptime_sec +'%-d days %-H hours %-M minutes %-S seconds')
 
-echo "Output written to $output_file"
+# Write uptime to the file without echoing
+echo "System has been up for: $uptime" > "$output_file"
+

@@ -13,5 +13,16 @@ Add the following line
 
 sudo bash /RPi-Benchmarks/boot_benchmark.sh
 
+reboot now
+
+
+Log back into your device
+
+read the results
+
+cat /shutdown_difference.txt
+
+
+
 
 
